@@ -18,8 +18,9 @@ const Tabs = () => {
                 showLabel: false,
                 unmountOnBlur: true,
                 style: {
-                   
-                    // ...styles.shadow
+                    borderWidth: 0,
+                    borderColor: '#fff',
+                    ...styles.shadow
                 }
             }}
         >
@@ -41,9 +42,9 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen name="Search" component={MainSearchScreen}
-                
+
                 options={{
-                    tabBarVisible: false,                
+                    // tabBarVisible: false,                
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: 'center', top: 0 }} >
                             <Image

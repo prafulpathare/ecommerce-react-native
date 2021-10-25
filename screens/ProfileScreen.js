@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, Node, setState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const ProfileScreen = ({ navigation }) => {
 
@@ -16,10 +16,14 @@ const ProfileScreen = ({ navigation }) => {
                 }}
             >
                 <Text>Log Out</Text>
-                </TouchableOpacity>
+            </TouchableOpacity>
         </View>
     );
 };
 
 
+const styles = StyleSheet.create({
+
+
+});
 export default ProfileScreen;

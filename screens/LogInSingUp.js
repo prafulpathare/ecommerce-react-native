@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text, Button, Image, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, StatusBar, SafeAreaView, TextInput, Alert, AsyncStorage, Pressable } from 'react-native';
 import MainScreen from './MainScreen';
+import ProductScreen from './ProductScreen';
 
 const Stack = createStackNavigator();
 
@@ -25,7 +26,7 @@ const LogInScreen = ({ navigation, route }) => {
             setPassword({ val: password.val, err: 'password must be 5 letters long.', wrongPasswordCount: password.wrongPasswordCount })
             return false;
         }
-        if(!(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/).test(password.val)) {
+        if (!(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/).test(password.val)) {
             setPassword({ val: password.val, err: 'password must contain at least one special character and number.', wrongPasswordCount: password.wrongPasswordCount })
             return false;
         }
@@ -33,8 +34,8 @@ const LogInScreen = ({ navigation, route }) => {
     }
 
     const handleLogIn = () => {
-        setPhone({val: phone.val, err: ''})
-        setPassword({val: password.val, err: '', wrongPasswordCount: password.wrongPasswordCount})
+        setPhone({ val: phone.val, err: '' })
+        setPassword({ val: password.val, err: '', wrongPasswordCount: password.wrongPasswordCount })
         if (!checkPhone()) return;
         if (!checkPassword()) return;
 
@@ -60,7 +61,7 @@ const LogInScreen = ({ navigation, route }) => {
                     }}
                         keyboardType="phone-pad"
                         autoFocus={phone.err.length > 0 ? true : false}
-                        onChangeText={(e) => setPhone({val: e, err: ''}) }
+                        onChangeText={(e) => setPhone({ val: e, err: '' })}
                         placeholder="Phone no." />
                     <Text style={{
                         ...styles.inputError,
@@ -75,15 +76,15 @@ const LogInScreen = ({ navigation, route }) => {
                         borderColor: password.err.length > 0 ? '#ff0000' : '#ffffff'
                     }}
                         autoFocus={password.err.length > 0 ? true : false}
-                        onChangeText={(e) => setPassword({val: e, err: '', wrongPasswordCount: password.wrongPasswordCount}) }
+                        onChangeText={(e) => setPassword({ val: e, err: '', wrongPasswordCount: password.wrongPasswordCount })}
                         placeholder="Password" />
                     <Text style={{
                         ...styles.inputError,
                         display: password.err.length > 1 ? "flex" : "none"
                     }} >{password.err}</Text>
 
-                    <Pressable onPress={() => {}} style={{ display: password.wrongPasswordCount > 2 ? 'flex': 'none' }}>
-                        <Text style={{ ...styles.inputError,textAlign: 'right', color: '#0b68d4', paddingEnd: 20 }}>forgot password?</Text>
+                    <Pressable onPress={() => { }} style={{ display: password.wrongPasswordCount > 2 ? 'flex' : 'none' }}>
+                        <Text style={{ ...styles.inputError, textAlign: 'right', color: '#0b68d4', paddingEnd: 20 }}>forgot password?</Text>
                     </Pressable>
                 </View>
 
@@ -95,12 +96,12 @@ const LogInScreen = ({ navigation, route }) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{  alignSelf: 'center', flexDirection: 'row', marginTop: 20, }} >
-                    <Text style={{fontSize: 12}}>Don't have an account ? </Text>
+                <View style={{ alignSelf: 'center', flexDirection: 'row', marginTop: 20, }} >
+                    <Text style={{ fontSize: 12 }}>Don't have an account ? </Text>
                     <Pressable onPress={() => {
-                        
+
                     }} >
-                        <Text style={{fontSize: 12, color: '#0b68d4'}}>Create new Account</Text>
+                        <Text style={{ fontSize: 12, color: '#0b68d4' }}>Create new Account</Text>
                     </Pressable>
                 </View>
             </View>
@@ -114,10 +115,12 @@ const LogInSignUp = ({ navigation, route }) => {
             tabBarOptions={{
                 keyboardHidesTabBar: true
             }}
-            initialRouteName="LogInSignUp"
+            initialRouteName="Main"
         >
             <Stack.Screen name="LogInSignUp" component={LogInScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Product" component={ProductScreen} options={{ headerShown: false }} />
+
         </Stack.Navigator>
     );
 };
